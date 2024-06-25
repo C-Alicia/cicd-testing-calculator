@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,12 +29,12 @@ class MultiplicationJourneyE2ETest {
 
   @BeforeAll
   static void setUpFireFoxDriver() {
-    WebDriverManager.firefoxdriver().setup();
+    WebDriverManager.chromedriver().setup();
   }
 
   @BeforeEach
   void setUpWebDriver() {
-    webDriver = new FirefoxDriver();
+    webDriver = new ChromeDriver();
     baseUrl = "http://localhost:" + port + "/calculator";
 
   }

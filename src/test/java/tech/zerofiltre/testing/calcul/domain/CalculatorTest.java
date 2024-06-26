@@ -2,6 +2,7 @@ package tech.zerofiltre.testing.calcul.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
 
 import java.text.MessageFormat;
 import java.time.DayOfWeek;
@@ -125,8 +126,12 @@ class CalculatorTest {
 		calculatorUnderTest.longCalculation();
 
 		// Assert
-		// ...
+		int a=1;
+		a=a;
+		
 	}
+
+	
 
 	@Test
 	void listDigits_shouldReturnsTheListOfDigits_ofPositiveInteger() {

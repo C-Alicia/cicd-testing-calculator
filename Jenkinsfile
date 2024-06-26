@@ -44,13 +44,13 @@ node {
         }
 
         stage('Push to Docker Registry') {
-            withCredentials([usernamePassword(credentialsId: 'DockerhubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            withCredentials([usernamePassword(credentialsId: 'dockercredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 pushToImage(CONTAINER_NAME, CONTAINER_TAG, USERNAME, PASSWORD)
             }
         }
 
         stage('Run App') {
-            withCredentials([usernamePassword(credentialsId: 'DockerhubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            withCredentials([usernamePassword(credentialsId: 'dockercredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 runApp(CONTAINER_NAME, CONTAINER_TAG, USERNAME, HTTP_PORT, ENV_NAME)
 
             }
@@ -58,7 +58,7 @@ node {
 
     } finally {
         deleteDir()
-        sendEmail(EMAIL_RECIPIENTS);
+        // sendEmail(EMAIL_RECIPIENTS);
     }
 
 }
@@ -84,7 +84,7 @@ def pushToImage(containerName, tag, dockerUser, dockerPassword) {
 }
 
 def runApp(containerName, tag, dockerHubUser, httpPort, envName) {
-    sh "docker pull $dockerHubUser/$containerName"
+    sh "docker pull $dockerHubUser/$containerName:$tag"
     sh "docker run --rm --env SPRING_ACTIVE_PROFILES=$envName -d -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag"
     echo "Application started on port: ${httpPort} (http)"
 }

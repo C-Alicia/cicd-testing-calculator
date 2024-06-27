@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Calculateur du cours</title>
+    <title>Calculateur du cours de tests OpenClassrooms</title>
 
     <link rel="stylesheet" th:href="@{webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
 
@@ -12,26 +12,26 @@
 
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
-    <a class="navbar-brand" href="#">Ma Calculatrice</a>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Open Calculator</a>
 </nav>
 
 <main role="main" class="container">
 
-    <div class="starter-template ">
-        <h1>Ma calculatrice</h1>
-        <h2 class="mt-4">
+    <div class="starter-template">
+        <h1>Open Calculator</h1>
+        <h2>
+
             <form action="#" th:action="@{/calculator}" th:object="${calculation}" method="post">
                 <div class="row">
                     <div class="col">&nbsp;</div>
                 </div>
-                <div class="row g-2">
+                <div class="row">
                     <div class="col">
-                        <input id="left" type="text" th:field="*{leftArgument}" class="form-control" placeholder="Entrer une première valeur">
+                        <input id="left" type="text" th:field="*{leftArgument}" class="form-control" placeholder="First Value">
                     </div>
-
                     <div class="col">
-                        <select id="type" th:field="*{calculationType}" class="form-control form-control">
+                        <select id="type" th:field="*{calculationType}" class="form-control form-control-lg">
                             <option value="ADDITION" selected="true"> + </option>
                             <option value="SUBTRACTION" selected="true"> - </option>
                             <option value="MULTIPLICATION"> x </option>
@@ -39,12 +39,12 @@
                         </select>
                     </div>
                     <div class="col">
-                        <input id="right" type="text" th:field="*{rightArgument}" class="form-control" placeholder="Entrer une deuxième valeur">
+                        <input id="right" type="text" th:field="*{rightArgument}" class="form-control" placeholder="Second Value">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button id="submit" type="submit" class="btn btn-info">=</button>
+                        <button id="submit" type="submit" class="btn btn-primary">=</button>
 
                     </div>
                     <div class="text-danger validation-summary-valid" data-valmsg-summary="true">

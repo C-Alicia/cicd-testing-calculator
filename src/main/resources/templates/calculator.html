@@ -1,75 +1,117 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Calculateur du cours de tests OpenClassrooms</title>
-
-    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
-
+    <title>Calcultrice simple</title>
+    <link rel="stylesheet" href="/src/public/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<style>
+    body {
+        background-color: #f0f2f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .calculator-card {
+        max-width: 600px;
+        /* Augmentation de la largeur maximale à 600px */
+        width: 100%;
+        /* Assure que le conteneur occupe toute la largeur possible jusqu'à 600px */
+        margin: auto;
+        padding: 30px;
+        /* Augmentation du padding pour un meilleur espacement */
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .calculator-card h1 {
+        font-size: 2rem;
+        /* Augmentation de la taille de la police pour le titre */
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #333333;
+    }
+
+    .calculator-card .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .calculator-card .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1.25rem;
+    }
+
+    .calculator-card .result {
+        margin-top: 1.5rem;
+        font-size: 1.25rem;
+        text-align: center;
+        background-color: #e9ecef;
+        padding: 0.75rem;
+        border-radius: 5px;
+    }
+
+    .calculator-card .error-message {
+        color: #dc3545;
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+</style>
 
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Open Calculator</a>
-</nav>
+    <div class="calculator-card">
+        <h1>Calculatrice simple</h1>
+        <form action="#" th:action="@{/calculator}" th:object="${calculation}" method="post">
+            <div class="form-group">
+                <label for="leftArgument">Première valeur :</label>
+                <input type="text" th:field="*{leftArgument}" class="form-control" id="leftArgument"
+                    placeholder="Entrer une première valeur">
+            </div>
+            <div class="form-group">
+                <label for="calculationType">Choisir une opération :</label>
+                <select th:field="*{calculationType}" class="form-control form-control-lg" id="calculationType">
+                    <option value="ADDITION"> + </option>
+                    <option value="SUBTRACTION"> - </option>
+                    <option value="MULTIPLICATION"> × </option>
+                    <option value="DIVISION"> ÷ </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="rightArgument">Seconde valeur :</label>
+                <input type="text" th:field="*{rightArgument}" class="form-control" id="rightArgument"
+                    placeholder="Entrer une seconde valeur">
+            </div>
+            <button type="submit" class="btn btn-primary">Calculer</button>
 
-<main role="main" class="container">
+            <!-- Error messages -->
+            <div class="error-message" data-valmsg-summary="true">
+                <ul id="errors" th:if="${#fields.hasErrors('*')}">
+                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
 
-    <div class="starter-template">
-        <h1>Open Calculator</h1>
-        <h2>
-
-            <form action="#" th:action="@{/calculator}" th:object="${calculation}" method="post">
-                <div class="row">
-                    <div class="col">&nbsp;</div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <input type="text" th:field="*{leftArgument}" class="form-control" placeholder="First Value">
-                    </div>
-                    <div class="col">
-                        <select th:field="*{calculationType}" class="form-control form-control-lg">
-                            <option value="ADDITION" selected="true"> + </option>
-                            <option value="SUBTRACTION" selected="true"> - </option>
-                            <option value="MULTIPLICATION"> x </option>
-                            <option value="DIVISION"> / </option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <input type="text" th:field="*{rightArgument}" class="form-control" placeholder="Second Value">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary">=</button>
-
-                    </div>
-                    <div class="text-danger validation-summary-valid" data-valmsg-summary="true">
-                        <ul id="errors" th:if="${#fields.hasErrors('*')}">
-                            <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
-                        </ul>
-                    </div>
-                    <div class="col">
-                        <ul th:if="${response}">
-                            <span id="solution" th:text="${response.getSolution()}" class="badge">
-                                Solution
-                            </span>
-                        </ul>
-                    </div>
-
-                </div>
-            </form>
-
-        </h2>
+            <!-- Result display -->
+            <div th:if="${response}" class="result">
+                <span id="solution" th:text="${response.getSolution()}">Solution</span>
+            </div>
+        </form>
     </div>
 
-
-</main>
-<!-- /.container -->
-
-<script type="text/javascript" th:src="@{webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/45e38e596f.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

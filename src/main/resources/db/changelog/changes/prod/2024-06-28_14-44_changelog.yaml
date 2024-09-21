@@ -1,0 +1,56 @@
+databaseChangeLog:
+- changeSet:
+    id: 1719585900357-1
+    author: alici (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: id
+            type: INT
+        - column:
+            name: formatted_solution
+            type: VARCHAR(255)
+        - column:
+            name: left_argument
+            type: INT
+        - column:
+            name: right_argument
+            type: INT
+        - column:
+            name: solution
+            type: INT
+        - column:
+            name: type
+            type: INT
+        tableName: calculation_model
+- changeSet:
+    id: 1719585900357-2
+    author: alici (generated)
+    changes:
+    - insert:
+        columns:
+        - column:
+            name: id
+            valueNumeric: 1
+        - column:
+            name: formatted_solution
+            value: '6'
+        - column:
+            name: left_argument
+            valueNumeric: 3
+        - column:
+            name: right_argument
+            valueNumeric: 3
+        - column:
+            name: solution
+            valueNumeric: 6
+        - column:
+            name: type
+            valueNumeric: 0
+        tableName: calculation_model
+

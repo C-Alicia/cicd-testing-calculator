@@ -72,7 +72,7 @@
         <h1>Calculatrice simple</h1>
         <form action="#" th:action="@{/calculator}" th:object="${calculation}" method="post">
             <div class="form-group">
-                <label for="leftArgument">Première valeur :</label>
+                <label>Première valeur :</label>
                 <input id="left" type="text" th:field="*{leftArgument}" class="form-control" placeholder="Entrer une première valeur">
             </div>
             <div class="form-group">
@@ -85,12 +85,12 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="rightArgument">Seconde valeur :</label>
+                <label>Seconde valeur :</label>
                 <input id="right" type="text" th:field="*{rightArgument}" class="form-control" placeholder="Entrer une deuxième valeur">
             </div>
                 <button id="submit" type="submit" class="btn btn-primary">=</button>
-            <!-- Error messages -->
-            <div class="error-message" data-valmsg-summary="true">
+             <!-- Error messages -->
+             <div class="error-message" data-valmsg-summary="true">
                 <ul id="errors" th:if="${#fields.hasErrors('*')}">
                     <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
                 </ul>

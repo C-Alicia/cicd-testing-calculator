@@ -73,25 +73,22 @@
         <form action="#" th:action="@{/calculator}" th:object="${calculation}" method="post">
             <div class="form-group">
                 <label for="leftArgument">Première valeur :</label>
-                <input type="text" th:field="*{leftArgument}" class="form-control" id="leftArgument"
-                    placeholder="Entrer une première valeur">
+                <input id="left" type="text" th:field="*{leftArgument}" class="form-control" placeholder="Entrer une première valeur">
             </div>
             <div class="form-group">
-                <label for="calculationType">Choisir une opération :</label>
-                <select th:field="*{calculationType}" class="form-control form-control-lg" id="calculationType">
-                    <option value="ADDITION"> + </option>
-                    <option value="SUBTRACTION"> - </option>
-                    <option value="MULTIPLICATION"> × </option>
-                    <option value="DIVISION"> ÷ </option>
+                <label>Choisir une opération :</label>
+                <select id="type" th:field="*{calculationType}" class="form-control form-control-lg">
+                    <option value="ADDITION" selected="true"> + </option>
+                    <option value="SUBTRACTION" selected="true"> - </option>
+                    <option value="MULTIPLICATION"> x </option>
+                    <option value="DIVISION"> / </option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="rightArgument">Seconde valeur :</label>
-                <input type="text" th:field="*{rightArgument}" class="form-control" id="rightArgument"
-                    placeholder="Entrer une seconde valeur">
+                <input id="right" type="text" th:field="*{rightArgument}" class="form-control" placeholder="Entrer une deuxième valeur">
             </div>
-            <button type="submit" class="btn btn-primary">Calculer</button>
-
+                <button id="submit" type="submit" class="btn btn-primary">=</button>
             <!-- Error messages -->
             <div class="error-message" data-valmsg-summary="true">
                 <ul id="errors" th:if="${#fields.hasErrors('*')}">

@@ -56,9 +56,9 @@ class MultiplicationJourneyE2E {
     WebElement submitButton = webDriver.findElement(By.id("submit"));
 
     //WHEN
-    leftField.sendKeys("2");
+    leftField.sendKeys("16");
     typeDropDown.sendKeys("x");
-    rightField.sendKeys("16");
+    rightField.sendKeys("2");
     submitButton.click();
 
     //THEN

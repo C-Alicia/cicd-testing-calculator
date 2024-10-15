@@ -73,7 +73,8 @@
         <form action="#" th:action="@{/calculator}" th:object="${calculation}" method="post">
             <div class="form-group">
                 <label>Première valeur :</label>
-                <input id="left" type="text" th:field="*{leftArgument}" class="form-control" placeholder="Entrer une première valeur">
+                <input id="left" type="text" th:field="*{leftArgument}" class="form-control"
+                    placeholder="Entrer une première valeur">
             </div>
             <div class="form-group">
                 <label>Choisir une opération :</label>
@@ -86,11 +87,12 @@
             </div>
             <div class="form-group">
                 <label>Seconde valeur :</label>
-                <input id="right" type="text" th:field="*{rightArgument}" class="form-control" placeholder="Entrer une deuxième valeur">
+                <input id="right" type="text" th:field="*{rightArgument}" class="form-control"
+                    placeholder="Entrer une deuxième valeur">
             </div>
-                <button id="submit" type="submit" class="btn btn-primary">=</button>
-             <!-- Error messages -->
-             <div class="text-danger validation-summary-valid" data-valmsg-summary="true">
+            <button id="submit" type="submit" class="btn btn-primary">=</button>
+            <!-- Error messages -->
+            <div class="text-danger validation-summary-valid" data-valmsg-summary="true">
                 <ul id="errors" th:if="${#fields.hasErrors('*')}">
                     <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
                 </ul>

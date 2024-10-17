@@ -1,6 +1,5 @@
 package tech.zerofiltre.testing.calcul.controller;
 
-import javax.inject.Inject;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

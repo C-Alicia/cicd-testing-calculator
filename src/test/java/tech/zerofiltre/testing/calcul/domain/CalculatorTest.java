@@ -207,4 +207,61 @@ class CalculatorTest {
 		assertThat(c).isEqualTo(a);
 	}
 
+	// add test artithmetics (addition, multiplication, subtraction, divide)
+	
+	@Test
+    void testAdd() {
+        // Arrange
+        final int a = 2;
+        final int b = 3;
+
+        // Act
+        final int somme = calculatorUnderTest.add(a, b);
+
+        // Assert
+        assertThat(somme).isEqualTo(5);
+        assertEquals(5, somme);
+    }
+
+    @Test
+    void testMultiply() {
+        // Arrange
+        final int a = 5;
+        final int b = 4;
+
+        // Act
+        final int product = calculatorUnderTest.multiply(a, b);
+
+        // Assert
+        assertThat(product).isEqualTo(20);
+        assertEquals(20, product);
+    }
+
+    @Test
+    void testSubtract() {
+        // Arrange
+        final int a = 10;
+        final int b = 3;
+
+        // Act
+        final int difference = calculatorUnderTest.sub(a, b);
+
+        // Assert
+        assertThat(difference).isEqualTo(7);
+        assertEquals(7, difference);
+    }
+
+    @Test
+    void testDivide() {
+        // Arrange
+        final int a = 10;
+        final int b = 2;
+
+        // Act
+        final int quotient = calculatorUnderTest.divide(a, b);
+
+        // Assert
+        assertThat(quotient).isEqualTo(5);
+        assertEquals(5, quotient);
+    }
 }

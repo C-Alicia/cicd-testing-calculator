@@ -22,7 +22,6 @@ class AdditionJourneyE2E {
 
   @LocalServerPort
   private int port;
-
   private WebDriver webDriver;
   private String baseUrl;
 

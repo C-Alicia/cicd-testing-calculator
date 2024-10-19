@@ -2,6 +2,7 @@ package tech.zerofiltre.testing.calcul.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.text.MessageFormat;
 import java.time.DayOfWeek;
@@ -213,14 +214,14 @@ class CalculatorTest {
     void testAdd() {
         // Arrange
         final int a = 2;
-        final int b = 3;
+        final int b = 6;
 
         // Act
         final int somme = calculatorUnderTest.add(a, b);
 
         // Assert
-        assertThat(somme).isEqualTo(5);
-        assertEquals(5, somme);
+        assertThat(somme).isEqualTo(8);
+        assertEquals(8, somme);
     }
 
     @Test
@@ -263,5 +264,17 @@ class CalculatorTest {
         // Assert
         assertThat(quotient).isEqualTo(5);
         assertEquals(5, quotient);
+    }
+
+	@Test
+    void testDivideByZero() {
+        // Arrange
+        final int a = 10;
+        final int b = 0;
+
+        // Act & Assert
+        assertThrows(ArithmeticException.class, () -> {
+            calculatorUnderTest.divide(a, b);
+        });
     }
 }

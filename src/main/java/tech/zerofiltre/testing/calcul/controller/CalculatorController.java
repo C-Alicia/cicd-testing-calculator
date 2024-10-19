@@ -27,10 +27,11 @@ public class CalculatorController {
     this.calculationModelRepository = calculationModelRepository;
   }
 
-  @GetMapping("/")
+   @GetMapping("/")
   public String index(Calculation calculation) {
     return "redirect:/calculator";
   }
+
 
   @GetMapping("/calculator")
   public String root(Calculation calculation) {
@@ -39,7 +40,11 @@ public class CalculatorController {
 
   @PostMapping("/calculator")
   public String calculate(@Valid Calculation calculation, BindingResult bindingResult, Model model) {
-
+    
+    // Vérifiez s'il y a des erreurs de validation
+    if (bindingResult.hasErrors()) {
+      return CALCULATOR_TEMPLATE; // Retourne à la vue du formulaire avec les erreurs affichées
+  }
     final CalculationType type = CalculationType.valueOf(calculation.getCalculationType());
     final CalculationModel calculationModel = new CalculationModel(
         type,
@@ -53,4 +58,5 @@ public class CalculatorController {
     model.addAttribute("response", response);
     return CALCULATOR_TEMPLATE; // cf. resources/templates/calculator.html
   }
+  
 }

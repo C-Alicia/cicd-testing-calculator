@@ -34,3 +34,10 @@ build/
 ### VS Code ###
 .vscode/
 
+<<<<<<< HEAD
+=======
+###  ###
+/Dockerfile/
+/Jenkinsfile/
+.settings.xml
+>>>>>>> d9c13f15978c779aa53a4aac3b80d0a9278c4c88

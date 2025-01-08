@@ -12,5 +12,6 @@ spring:
   liquibase:
     enabled: false
 
+# Modify the port befor 8999 and then connect to 8081 because the 8080 the port is used for other applications and we wave must conflict.
 server:
-  port: 8999
+  port: 8081

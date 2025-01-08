@@ -2,6 +2,7 @@ package tech.zerofiltre.testing.calcul.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.text.MessageFormat;
 import java.time.DayOfWeek;
@@ -207,4 +208,73 @@ class CalculatorTest {
 		assertThat(c).isEqualTo(a);
 	}
 
+	// add test artithmetics (addition, multiplication, subtraction, divide)
+	
+	@Test
+    void testAdd() {
+        // Arrange
+        final int a = 2;
+        final int b = 6;
+
+        // Act
+        final int somme = calculatorUnderTest.add(a, b);
+
+        // Assert
+        assertThat(somme).isEqualTo(8);
+        assertEquals(8, somme);
+    }
+
+    @Test
+    void testMultiply() {
+        // Arrange
+        final int a = 5;
+        final int b = 4;
+
+        // Act
+        final int product = calculatorUnderTest.multiply(a, b);
+
+        // Assert
+        assertThat(product).isEqualTo(20);
+        assertEquals(20, product);
+    }
+
+    @Test
+    void testSubtract() {
+        // Arrange
+        final int a = 10;
+        final int b = 3;
+
+        // Act
+        final int difference = calculatorUnderTest.sub(a, b);
+
+        // Assert
+        assertThat(difference).isEqualTo(7);
+        assertEquals(7, difference);
+    }
+
+    @Test
+    void testDivide() {
+        // Arrange
+        final int a = 10;
+        final int b = 2;
+
+        // Act
+        final int quotient = calculatorUnderTest.divide(a, b);
+
+        // Assert
+        assertThat(quotient).isEqualTo(5);
+        assertEquals(5, quotient);
+    }
+
+	@Test
+    void testDivideByZero() {
+        // Arrange
+        final int a = 10;
+        final int b = 0;
+
+        // Act & Assert
+        assertThrows(ArithmeticException.class, () -> {
+            calculatorUnderTest.divide(a, b);
+        });
+    }
 }

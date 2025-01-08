@@ -5,9 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Calcultrice simple</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="/src/public/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+=======
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+>>>>>>> d9c13f15978c779aa53a4aac3b80d0a9278c4c88
 </head>
 <style>
     body {
@@ -17,6 +23,7 @@
         justify-content: center;
         height: 100vh;
     }
+<<<<<<< HEAD
 
     .calculator-card {
         max-width: 600px;
@@ -66,12 +73,63 @@
         margin-top: 1rem;
     }
 </style>
+=======
+>>>>>>> d9c13f15978c779aa53a4aac3b80d0a9278c4c88
 
+    .calculator-card {
+        max-width: 600px;
+        /* Augmentation de la largeur maximale à 600px */
+        width: 100%;
+        /* Assure que le conteneur occupe toute la largeur possible jusqu'à 600px */
+        margin: auto;
+        padding: 30px;
+        /* Augmentation du padding pour un meilleur espacement */
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .calculator-card h1 {
+        font-size: 2rem;
+        /* Augmentation de la taille de la police pour le titre */
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #333333;
+    }
+
+    .calculator-card .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .calculator-card .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1.25rem;
+    }
+
+    .calculator-card .result {
+        margin-top: 1.5rem;
+        font-size: 1.25rem;
+        text-align: center;
+        background-color: #e9ecef;
+        padding: 0.75rem;
+        border-radius: 5px;
+    }
+
+    .calculator-card .error-message {
+        color: #dc3545;
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+</style>
 <body>
     <div class="calculator-card">
         <h1>Calculatrice simple</h1>
         <form action="#" th:action="@{/calculator}" th:object="${calculation}" method="post">
             <div class="form-group">
+<<<<<<< HEAD
                 <label for="leftArgument">Première valeur :</label>
                 <input type="text" th:field="*{leftArgument}" class="form-control" id="leftArgument"
                     placeholder="Entrer une première valeur">
@@ -99,6 +157,34 @@
                 </ul>
             </div>
 
+=======
+                <label>Première valeur :</label>
+                <input id="left" type="text" th:field="*{leftArgument}" class="form-control"
+                    placeholder="Entrer une première valeur">
+            </div>
+            <div class="form-group">
+                <label>Choisir une opération :</label>
+                <select id="type" th:field="*{calculationType}" class="form-control form-control-lg">
+                    <option value="ADDITION" selected="true"> + </option>
+                    <option value="SUBTRACTION" selected="true"> - </option>
+                    <option value="MULTIPLICATION"> x </option>
+                    <option value="DIVISION"> / </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Seconde valeur :</label>
+                <input id="right" type="text" th:field="*{rightArgument}" class="form-control"
+                    placeholder="Entrer une deuxième valeur">
+            </div>
+            <button id="submit" type="submit" class="btn btn-primary">=</button>
+            <!-- Error messages -->
+            <div class="text-danger validation-summary-valid" data-valmsg-summary="true">
+                <ul id="errors" th:if="${#fields.hasErrors('*')}">
+                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
+
+>>>>>>> d9c13f15978c779aa53a4aac3b80d0a9278c4c88
             <!-- Result display -->
             <div th:if="${response}" class="result">
                 <span id="solution" th:text="${response.getSolution()}">Solution</span>

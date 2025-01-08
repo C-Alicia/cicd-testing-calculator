@@ -136,4 +136,17 @@ class CalculatorServiceTest {
     assertThat(formattedResult).isEqualTo("13 000");
   }
 
+  @Test
+  void calculforAddition() {
+      // GIVEN
+      when(calculator.add(5, 2)).thenReturn(7); // Simulation du comportement de la méthode add
+
+      // WHEN
+      final int result = classUnderTest.calculate(
+          new CalculationModel(CalculationType.ADDITION, 5, 2)).getSolution();
+
+      // THEN
+      verify(calculator).add(5, 2); // Vérifie que la méthode add a été appelée avec les bons arguments
+      assertThat(result).isEqualTo(7); // Vérifie que le résultat est correct
+  }
 }
